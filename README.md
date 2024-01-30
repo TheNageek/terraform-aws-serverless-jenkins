@@ -1,12 +1,7 @@
-# Archived
-This module is not being maintained anymore, feel free to fork it if you see fit.
-
-[![](https://img.shields.io/github/license/Renatochaz/terraform-aws-serverless-jenkins)](https://github.com/Renatochaz/terraform-aws-serverless-jenkins)
-[![](https://img.shields.io/github/issues/Renatochaz/terraform-aws-serverless-jenkins)](https://github.com/Renatochaz/terraform-aws-serverless-jenkins)
-[![](https://img.shields.io/github/issues-closed/Renatochaz/terraform-aws-serverless-jenkins)](https://github.com/Renatochaz/terraform-aws-serverless-jenkins)
-
-
 # Serverless Jenkins Terraform Module for AWS #
+
+[![](https://img.shields.io/github/license/TheNageek/terraform-aws-serverless-jenkins)](https://github.com/TheNageek/terraform-aws-serverless-jenkins) [![](https://img.shields.io/github/issues/TheNageek/terraform-aws-serverless-jenkins)](https://github.com/TheNageek/terraform-aws-serverless-jenkins) [![](https://img.shields.io/github/issues-closed/TheNageek/terraform-aws-serverless-jenkins)](https://github.com/TheNageek/terraform-aws-serverless-jenkins)
+
 
 Terraform module to deploy a Serverless Jenkins service on AWS, providing high availability and scalability.
 
