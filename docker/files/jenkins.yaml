@@ -25,9 +25,9 @@ jenkins:
               numExecutors: 1
               allowedOverrides: "inheritFrom,label,memory,cpu,image"
               credentialsId: ""
-              cluster: arn:aws:ecs:us-east-1:058917493319:cluster/jenkins-agents
+              cluster: arn:aws:ecs:us-west-2:090334723359:cluster/jenkins-agents
               name: "fargate-cloud-agents"
-              regionName: us-east-1
+              regionName: us-west-2
               retentionTimeout: 10
               jenkinsUrl: "http://controller.jenkins:8080"
               templates:
@@ -35,16 +35,16 @@ jenkins:
                     assignPublicIp: true
                     image: "jenkins/inbound-agent"
                     label: "agent-builder"
-                    executionRole: arn:aws:iam::058917493319:role/jenkins-ecs-execution-role
+                    executionRole: arn:aws:iam::090334723359:role/jenkins-ecs-execution-role
                     launchType: "FARGATE"
                     memory: 0
                     memoryReservation: 1024
                     networkMode: "awsvpc"
                     privileged: false
                     remoteFSRoot: "/home/jenkins"
-                    securityGroups: sg-02d4811ca7d7a5c6a
+                    securityGroups: sg-0a6fdf5a1c7686737
                     sharedMemorySize: 0
-                    subnets: subnet-07a00d485112c354f
+                    subnets: subnet-0a68ccafccaa2c745
                     templateName: "agent-builder"
                     uniqueRemoteFSRoot: false
 security:
