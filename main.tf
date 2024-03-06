@@ -478,7 +478,7 @@ data "aws_iam_policy_document" "jenkins_controller_task_policy" {
     actions = [
       "kms:Decrypt"
     ]
-    resources = ["*"]
+    resources = ["arn:aws:kms:${local.region}:${local.account_id}:alias/aws/ssm"]
   }
   statement {
     effect = "Allow"
