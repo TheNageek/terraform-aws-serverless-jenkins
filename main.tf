@@ -386,7 +386,10 @@ data "aws_iam_policy_document" "ecs_execution_policy" {
       "ecr:GetAuthorizationToken",
       "ecr:BatchCheckLayerAvailability",
       "ecr:GetDownloadUrlForLayer",
-      "ecr:BatchGetImage"
+      "ecr:BatchGetImage",
+      "secretsmanager:GetSecretValue",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
     ]
     resources = ["*"]
   }
@@ -431,6 +434,18 @@ data "aws_iam_policy_document" "jenkins_controller_task_policy" {
     }
     resources = ["arn:aws:ecs:${local.region}:${local.account_id}:task-definition/*"]
   }
+
+  statement {
+    effect  = "Allow"
+    actions = ["ecs:TagResource"]
+    condition {
+      test     = "StringEquals"
+      variable = "ecs:CreateAction"
+      values   = ["RunTask"]
+    }
+    resources = ["arn:aws:ecs:${local.region}:${local.account_id}:task-definition/*"]
+  }
+
   statement {
     effect = "Allow"
     actions = [
@@ -452,7 +467,8 @@ data "aws_iam_policy_document" "jenkins_controller_task_policy" {
     actions = [
       "ssm:PutParameter",
       "ssm:GetParameter",
-      "ssm:GetParameters"
+      "ssm:GetParameters",
+      "secretsmanager:GetSecretValue"
     ]
     resources = ["arn:aws:ssm:${local.region}:${local.account_id}:parameter/jenkins*"]
   }
@@ -461,7 +477,7 @@ data "aws_iam_policy_document" "jenkins_controller_task_policy" {
     actions = [
       "kms:Decrypt"
     ]
-    resources = ["arn:aws:kms:${local.region}:${local.account_id}:alias/aws/ssm"]
+    resources = ["*"]
   }
   statement {
     effect = "Allow"
