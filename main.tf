@@ -218,6 +218,7 @@ resource "aws_ecs_cluster_capacity_providers" "jenkins_agents_provider" {
 
 resource "aws_ecs_task_definition" "jenkins_controller" {
   family = var.name_prefix
+  tags   = var.tags
 
   task_role_arn            = aws_iam_role.jenkins_controller_task_role.arn
   execution_role_arn       = aws_iam_role.jenkins_controller_task_role.arn
@@ -255,8 +256,6 @@ resource "aws_ecs_task_definition" "jenkins_controller" {
       }
     }
   }
-
-  tags = var.tags
 }
 
 resource "aws_kms_key" "cloudwatch" {
@@ -303,6 +302,8 @@ resource "aws_ecs_service" "jenkins_controller" {
   }
 
   depends_on = [aws_lb_listener.alb, null_resource.push_docker_image]
+
+  tags = var.tags
 }
 
 
@@ -444,7 +445,7 @@ data "aws_iam_policy_document" "jenkins_controller_task_policy" {
       variable = "ecs:CreateAction"
       values   = ["RunTask"]
     }
-    resources = ["arn:aws:ecs:${local.region}:${local.account_id}:task-definition/*"]
+    resources = ["*"]
   }
 
   statement {
