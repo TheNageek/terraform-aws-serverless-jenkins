@@ -342,7 +342,8 @@ data "aws_iam_policy_document" "efs_resource_policy" {
     actions = [
       "elasticfilesystem:ClientRootAccess",
       "elasticfilesystem:ClientMount",
-      "elasticfilesystem:ClientWrite"
+      "elasticfilesystem:ClientWrite",
+      "elasticfilesystem:DescribeMountTargets"
     ]
 
     principals {
