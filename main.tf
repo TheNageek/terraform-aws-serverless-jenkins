@@ -443,7 +443,12 @@ data "aws_iam_policy_document" "jenkins_controller_task_policy" {
     condition {
       test     = "StringEquals"
       variable = "ecs:CreateAction"
-      values   = ["RunTask"]
+      values   = [
+        "CreateTaskSet",
+        "RegisterTaskDefinition",
+        "RunTask",
+        "StartTask"
+      ]
     }
     resources = ["*"]
   }
