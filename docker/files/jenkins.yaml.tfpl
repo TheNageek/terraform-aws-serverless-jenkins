@@ -38,7 +38,7 @@ jenkins:
                     executionRole: ${execution_role_arn}
                     launchType: "FARGATE"
                     memory: ${jenkins_agents_memory_limit}
-                    memoryReservation: 1024
+                    memoryReservation: ${jenkins_agents_memory_limit}
                     networkMode: "awsvpc"
                     privileged: false
                     remoteFSRoot: "/home/jenkins"
